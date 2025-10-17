@@ -27,7 +27,7 @@ This MVP enables clients to sign up, log in, request NDIS services, and track st
 
 - Frontend: Next.js (React), TypeScript
 - Backend: FastAPI (Python), SQLModel, Alembic
-- Database: PostgreSQL
+- Database: SQLLITE
 - Auth: JWT Bearer via Authorization header
 - API: REST under `/api/*`
 
