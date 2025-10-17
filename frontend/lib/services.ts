@@ -1,12 +1,12 @@
-export interface Service {
-  id: string
-  title: string
-  description: string
-  fullDescription: string
-  image: string
+export interface ServiceCardData {
+  id: string;
+  title: string;
+  description: string;
+  fullDescription: string;
+  image: string;
 }
 
-export const servicesData: Service[] = [
+export const servicesData: ServiceCardData[] = [
   {
     id: "assist-access-maintain-employment",
     title: "Assist Access / Maintain Employment",
@@ -14,7 +14,8 @@ export const servicesData: Service[] = [
       "Supporting individuals in finding and maintaining suitable employment, building job skills, and fostering workplace confidence.",
     fullDescription:
       "Our employment support services help individuals with disabilities find meaningful work and maintain employment. We provide job coaching, skill development, and workplace support to ensure success and confidence in the workplace.",
-    image: "https://openpathcare.com.au/wp-content/uploads/2024/11/Home-Page-2.jpg",
+    image:
+      "https://openpathcare.com.au/wp-content/uploads/2024/11/Home-Page-2.jpg",
   },
   {
     id: "assist-life-stage-transition",
@@ -23,7 +24,8 @@ export const servicesData: Service[] = [
       "Helping individuals navigate significant life changes, such as moving to a new home, starting a job, or adapting to new routines.",
     fullDescription:
       "We support clients through major life transitions with personalized guidance and practical assistance. Whether it's moving to a new home, starting a new job, or adapting to new routines, we're here to help.",
-    image: "https://openpathcare.com.au/wp-content/uploads/2024/11/Home-Page-2.jpg",
+    image:
+      "https://openpathcare.com.au/wp-content/uploads/2024/11/Home-Page-2.jpg",
   },
   {
     id: "assist-personal-activities",
@@ -32,7 +34,8 @@ export const servicesData: Service[] = [
       "Providing support for daily personal tasks, such as grooming, showering, and dressing, tailored to the individual's unique needs.",
     fullDescription:
       "Our personal care assistance services provide dignified support for daily living activities. We tailor our approach to each individual's preferences and needs.",
-    image: "https://openpathcare.com.au/wp-content/uploads/2024/11/Home-Page-2.jpg",
+    image:
+      "https://openpathcare.com.au/wp-content/uploads/2024/11/Home-Page-2.jpg",
   },
   {
     id: "assist-travel-and-transport",
@@ -41,7 +44,8 @@ export const servicesData: Service[] = [
       "Ensuring safe and accessible transportation solutions for appointments, errands, and social activities, fostering independence and mobility.",
     fullDescription:
       "We provide safe and accessible transportation support for appointments, errands, and social activities. Our goal is to foster independence and mobility.",
-    image: "https://openpathcare.com.au/wp-content/uploads/2024/11/Home-Page-2.jpg",
+    image:
+      "https://openpathcare.com.au/wp-content/uploads/2024/11/Home-Page-2.jpg",
   },
   {
     id: "daily-tasks-shared-living",
@@ -50,7 +54,8 @@ export const servicesData: Service[] = [
       "Supporting shared living arrangements by assisting with everyday tasks, promoting a supportive and communal living environment.",
     fullDescription:
       "We support shared living arrangements by assisting with everyday tasks and promoting a supportive community environment.",
-    image: "https://openpathcare.com.au/wp-content/uploads/2024/11/Home-Page-2.jpg",
+    image:
+      "https://openpathcare.com.au/wp-content/uploads/2024/11/Home-Page-2.jpg",
   },
   {
     id: "innovative-community-participation",
@@ -59,6 +64,28 @@ export const servicesData: Service[] = [
       "Encouraging clients to engage in creative and social activities within the community, building social connections and confidence.",
     fullDescription:
       "We encourage community engagement through creative and social activities. Our programs build social connections and boost confidence.",
-    image: "https://openpathcare.com.au/wp-content/uploads/2024/11/Home-Page-2.jpg",
+    image:
+      "https://openpathcare.com.au/wp-content/uploads/2024/11/Home-Page-2.jpg",
   },
-]
+];
+
+// Live API types
+export type ApiService = {
+  id: number;
+  service_name: string;
+  service_description: string | null;
+  is_active: boolean;
+};
+
+export type ApiLoginResponse = {
+  access_token: string;
+  token_type: string;
+  expires_in: number;
+  user: {
+    id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    role: "client" | "admin";
+  };
+};

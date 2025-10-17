@@ -1,12 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, Phone } from "lucide-react";
+import { me } from "@/lib/api";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [token, setToken] = useState<string | null>(null);
+  const [userName, setUserName] = useState<string | null>(null);
+
+  useEffect(() => {
+    const t = localStorage.getItem("token");
+    if (!t) return;
+    setToken(t);
+    me(t)
+      .then((u) => setUserName(u.firstName))
+      .catch(() => setUserName(null));
+  }, []);
 
   return (
     <header className="bg-white shadow-lg sticky top-0 z-50">
@@ -71,12 +83,27 @@ export default function Header() {
             >
               Contact
             </Link>
-            <Link
-              href="/contact"
-              className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition font-medium"
-            >
-              Get Started
-            </Link>
+            {userName ? (
+              <div className="flex items-center gap-4">
+                <span className="text-gray-700">Hi, {userName}!</span>
+                <button
+                  onClick={() => {
+                    localStorage.removeItem("token");
+                    location.href = "/";
+                  }}
+                  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-medium"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <Link
+                href="/auth/login"
+                className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition font-medium"
+              >
+                Login
+              </Link>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
